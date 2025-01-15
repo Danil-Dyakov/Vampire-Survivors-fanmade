@@ -12,7 +12,7 @@ FPS = 60
 
 def main() -> None:
     pygame.init()
-    pygame.display.set_caption('Игра «Жизнь Кикориков»')
+    pygame.display.set_caption('Vampire Survivors Fanmade v.1.0')
 
     size = 1920, 1080
 
