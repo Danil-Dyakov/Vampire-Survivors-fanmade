@@ -59,11 +59,12 @@ def play(screen: Surface) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        screen.fill((0, 0, 255))
         camera.update(player)
         for sprite in all_sprites:
             camera.apply(sprite)
 
-        screen.fill((0, 0, 255))
+
         pygame.display.flip()
         clock.tick(100)
     pygame.quit()
