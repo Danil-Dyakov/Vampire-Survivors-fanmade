@@ -5,6 +5,7 @@ import pygame
 from pygame import Surface
 from pygame.time import Clock
 from utilits.load_image import load_image
+from utilits.load_level import load_level
 
 FPS = 60
 
@@ -48,37 +49,31 @@ def start_screen(screen: Surface) -> None:
 
 
 def play(screen: Surface) -> None:
-    player, level_x, level_y = generate_level(load_level('map.txt'))
+    player, level_x, level_y = generate_level(load_level('level_1.txt'))
     clock = pygame.time.Clock()
 
+    camera = Camera(screen.get_size())
     running = True
 
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        camera.update(player)
+        for sprite in all_sprites:
+            camera.apply(sprite)
 
-        screen.fill((0, 0, 0))
+        screen.fill((0, 0, 255))
         pygame.display.flip()
         clock.tick(100)
     pygame.quit()
 
 
-def load_level(filename):
-    filename = "data/" + filename
-    with open(filename, 'r') as mapFile:
-        level_map = [line.strip() for line in mapFile]
-
-    max_width = max(map(len, level_map))
-
-    return list(map(lambda x: x.ljust(max_width, '.'), level_map))
-
-
 tile_images = {
-    'wall': load_image('box.png'),
+    'wall': load_image('tree.png'),
     'empty': load_image('grass.png')
 }
-player_image = load_image('mario.png')
+player_image = load_image('hero_down.png')
 
 tile_width = tile_height = 50
 
@@ -121,6 +116,24 @@ def generate_level(level):
                 new_player = Player(x, y)
     # вернем игрока, а также размер поля в клетках
     return new_player, x, y
+
+
+class Camera:
+    # зададим начальный сдвиг камеры
+    def __init__(self, viewport_size):
+        self.dx = 0
+        self.dy = 0
+        self._viewport_size = viewport_size
+
+    # сдвинуть объект obj на смещение камеры
+    def apply(self, obj):
+        obj.rect.x += self.dx
+        obj.rect.y += self.dy
+
+    # позиционировать камеру на объекте target
+    def update(self, target):
+        self.dx = -(target.rect.x + target.rect.w // 2 - self._viewport_size[0] // 2)
+        self.dy = -(target.rect.y + target.rect.h // 2 - self._viewport_size[1] // 2)
 
 
 def terminate():
