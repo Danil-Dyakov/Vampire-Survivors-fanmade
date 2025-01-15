@@ -1,4 +1,3 @@
-import os
 import sys
 
 import pygame
@@ -59,7 +58,8 @@ def play(screen: Surface) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-        screen.fill((0, 0, 255))
+        game_screen = pygame.transform.scale(load_image('game_screen.png'), screen.get_size())
+        screen.blit(game_screen, (0, 0))
         camera.update(player)
         for sprite in all_sprites:
             camera.apply(sprite)
