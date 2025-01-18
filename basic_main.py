@@ -1,6 +1,4 @@
-import os
 import sys
-
 import pygame
 from pygame import Surface
 from pygame.time import Clock
@@ -23,13 +21,6 @@ def main() -> None:
     start_screen(screen)
     play(screen)
     terminate()
-
-
-#    while True:
-#        play(screen)
-#        play_again = end_screen(screen)
-#        if not play_again:
-#            terminate()
 
 
 def start_screen(screen: Surface) -> None:
@@ -59,15 +50,18 @@ def play(screen: Surface) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
+        # Очистка экрана
         screen.fill((0, 0, 255))
+        # Обновление камеры
         camera.update(player)
+        # Отрисовка всех спрайтов
         for sprite in all_sprites:
             camera.apply(sprite)
-
+        all_sprites.draw(screen)
 
         pygame.display.flip()
-        clock.tick(100)
-    pygame.quit()
+        clock.tick(FPS)
 
 
 tile_images = {
