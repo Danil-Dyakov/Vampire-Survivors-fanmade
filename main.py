@@ -96,61 +96,96 @@ class Player(pygame.sprite.Sprite):
         self.image = player_images['down']
         self.rect = self.image.get_rect().move(tile_width * pos_x, tile_height * pos_y)
         self.speed = 5
+        self.coldown = 0
+        self.coldown_time = 3
         self.direction = 'down'
 
     def move(self, keys):
         if keys[pygame.K_a]:
             self.rect.x -= self.speed
             self.direction = 'left'
-            if self.image == player_images['left']:
+            if self.image == player_images['left'] and self.coldown == 5:
                 self.image = player_images['left2']
-            elif self.image == player_images['left2']:
+                self.coldown = 0
+            elif self.image == player_images['left2'] and self.coldown == 5:
                 self.image = player_images['left3']
-            elif self.image == player_images['left3']:
+                self.coldown = 0
+            elif self.image == player_images['left3'] and self.coldown == 5:
                 self.image = player_images['left4']
-            elif self.image == player_images['left4']:
+                self.coldown = 0
+            elif self.image == player_images['left4'] and self.coldown == 5:
                 self.image = player_images['left']
-            else:
+                self.coldown = 0
+            elif self.coldown < 5:
+                self.coldown += 1
+            elif self.image != player_images['left'] and self.image != player_images['left2'] and self.image != \
+                    player_images['left3'] and self.image != player_images['left4']:
                 self.image = player_images['left']
+                self.coldown = 0
+
         if keys[pygame.K_d]:
             self.rect.x += self.speed
             self.direction = 'right'
-            if self.image == player_images['right']:
+            if self.image == player_images['right'] and self.coldown == self.coldown_time:
                 self.image = player_images['right2']
-            elif self.image == player_images['right2']:
+                self.coldown = 0
+            elif self.image == player_images['right2'] and self.coldown == self.coldown_time:
                 self.image = player_images['right3']
-            elif self.image == player_images['right3']:
+                self.coldown = 0
+            elif self.image == player_images['right3'] and self.coldown == self.coldown_time:
                 self.image = player_images['right4']
-            elif self.image == player_images['right4']:
+                self.coldown = 0
+            elif self.image == player_images['right4'] and self.coldown == self.coldown_time:
                 self.image = player_images['right']
-            else:
+                self.coldown = 0
+            elif self.coldown < self.coldown_time:
+                self.coldown += 1
+            elif self.image != player_images['right'] and self.image != player_images['right2'] and self.image != \
+                    player_images['right3'] and self.image != player_images['right4']:
                 self.image = player_images['right']
+                self.coldown = 0
         if keys[pygame.K_w]:
             self.rect.y -= self.speed
             self.direction = 'up'
-            if self.image == player_images['up']:
+            if self.image == player_images['up'] and self.coldown == self.coldown_time:
                 self.image = player_images['up2']
-            elif self.image == player_images['up2']:
+                self.coldown = 0
+            elif self.image == player_images['up2'] and self.coldown == self.coldown_time:
                 self.image = player_images['up3']
-            elif self.image == player_images['up3']:
+                self.coldown = 0
+            elif self.image == player_images['up3'] and self.coldown == self.coldown_time:
                 self.image = player_images['up4']
-            elif self.image == player_images['up4']:
+                self.coldown = 0
+            elif self.image == player_images['up4'] and self.coldown == self.coldown_time:
                 self.image = player_images['up']
-            else:
+                self.coldown = 0
+            elif self.coldown < self.coldown_time:
+                self.coldown += 1
+            elif self.image != player_images['up'] and self.image != player_images['up2'] and self.image != \
+                    player_images['up3'] and self.image != player_images['up4']:
                 self.image = player_images['up']
+                self.coldown = 0
         if keys[pygame.K_s]:
             self.rect.y += self.speed
             self.direction = 'down'
-            if self.image == player_images['down']:
+            if self.image == player_images['down'] and self.coldown == self.coldown_time:
                 self.image = player_images['down2']
-            elif self.image == player_images['down2']:
+                self.coldown = 0
+            elif self.image == player_images['down2'] and self.coldown == self.coldown_time:
                 self.image = player_images['down3']
-            elif self.image == player_images['down3']:
+                self.coldown = 0
+            elif self.image == player_images['down3'] and self.coldown == self.coldown_time:
                 self.image = player_images['down4']
-            elif self.image == player_images['down4']:
+                self.coldown = 0
+            elif self.image == player_images['down4'] and self.coldown == self.coldown_time:
                 self.image = player_images['down']
-            else:
+                self.coldown = 0
+            elif self.coldown < self.coldown_time:
+                self.coldown += 1
+            elif self.image != player_images['down'] and self.image != player_images['down2'] and self.image != \
+                    player_images['down3'] and self.image != player_images['down4']:
                 self.image = player_images['down']
+                self.coldown = 0
 
 player = None
 
