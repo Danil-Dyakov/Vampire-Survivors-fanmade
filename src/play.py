@@ -28,9 +28,9 @@ def play(screen: Surface) -> None:
         player.move(a)
 
         player.update(frame_time)
-        # camera.update(player)
-        # for sprite in all_sprites:
-        #     camera.apply(sprite)
+        camera.update(player)
+        for sprite in all_sprites:
+            camera.apply(sprite)
 
         screen.fill((0, 0, 255))
         all_sprites.draw(screen)

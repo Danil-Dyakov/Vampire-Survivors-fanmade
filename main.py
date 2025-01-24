@@ -17,7 +17,7 @@ def main() -> None:
     pygame.display.set_mode((display_info.current_w, display_info.current_h))
     screen = pygame.display.set_mode(size)
 
-    start_screen(screen)
+    # start_screen(screen)
     play(screen)
     terminate()
 
@@ -65,9 +65,21 @@ tile_images = {
 
 player_images = {
     'up': load_image('hero_up.png'),
+    'up2': load_image('hero_up2.png'),
+    'up3': load_image('hero_up.png'),
+    'up4': load_image('hero_up3.png'),
     'down': load_image('hero_down.png'),
+    'down2': load_image('hero_down2.png'),
+    'down3': load_image('hero_down.png'),
+    'down4': load_image('hero_down3.png'),
     'left': load_image('hero_left.png'),
-    'right': load_image('hero_right.png')
+    'left2': load_image('hero_left2.png'),
+    'left3': load_image('hero_left.png'),
+    'left4': load_image('hero_left3.png'),
+    'right': load_image('hero_right.png'),
+    'right2': load_image('hero_right2.png'),
+    'right3': load_image('hero_right.png'),
+    'right4': load_image('hero_right3.png')
 }
 
 tile_width = tile_height = 50
@@ -90,19 +102,55 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_a]:
             self.rect.x -= self.speed
             self.direction = 'left'
-            self.image = player_images['left']
+            if self.image == player_images['left']:
+                self.image = player_images['left2']
+            elif self.image == player_images['left2']:
+                self.image = player_images['left3']
+            elif self.image == player_images['left3']:
+                self.image = player_images['left4']
+            elif self.image == player_images['left4']:
+                self.image = player_images['left']
+            else:
+                self.image = player_images['left']
         if keys[pygame.K_d]:
             self.rect.x += self.speed
             self.direction = 'right'
-            self.image = player_images['right']
+            if self.image == player_images['right']:
+                self.image = player_images['right2']
+            elif self.image == player_images['right2']:
+                self.image = player_images['right3']
+            elif self.image == player_images['right3']:
+                self.image = player_images['right4']
+            elif self.image == player_images['right4']:
+                self.image = player_images['right']
+            else:
+                self.image = player_images['right']
         if keys[pygame.K_w]:
             self.rect.y -= self.speed
             self.direction = 'up'
-            self.image = player_images['up']
+            if self.image == player_images['up']:
+                self.image = player_images['up2']
+            elif self.image == player_images['up2']:
+                self.image = player_images['up3']
+            elif self.image == player_images['up3']:
+                self.image = player_images['up4']
+            elif self.image == player_images['up4']:
+                self.image = player_images['up']
+            else:
+                self.image = player_images['up']
         if keys[pygame.K_s]:
             self.rect.y += self.speed
             self.direction = 'down'
-            self.image = player_images['down']
+            if self.image == player_images['down']:
+                self.image = player_images['down2']
+            elif self.image == player_images['down2']:
+                self.image = player_images['down3']
+            elif self.image == player_images['down3']:
+                self.image = player_images['down4']
+            elif self.image == player_images['down4']:
+                self.image = player_images['down']
+            else:
+                self.image = player_images['down']
 
 player = None
 

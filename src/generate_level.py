@@ -14,5 +14,4 @@ def generate_level(level):
                 Tile('empty', x, y)
                 new_player_coordinates = x, y
     new_player = Player(*new_player_coordinates)
-    # вернем игрока, а также размер поля в клетках
     return new_player, x, y
