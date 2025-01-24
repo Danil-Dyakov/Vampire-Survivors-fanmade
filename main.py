@@ -1,23 +1,27 @@
+import sys
+
 import pygame
 
-# Размеры окна
-WIDTH, HEIGHT = 1920, 1080
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Vampire Survivors Fanmade")
+from src.play import play
+from src.start_screen import start_screen
+from src.terminate import terminate
 
-def main():
+
+def main() -> None:
     pygame.init()
-    clock = pygame.time.Clock()
-    running = True
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        screen.fill(pygame.Color("black"))
-        pygame.display.flip()
-        clock.tick(60)
+    pygame.display.set_caption('Vampire Survivors Fanmade v.1.0')
 
-    pygame.quit()
+    size = 1920, 1080
 
-if __name__ == "__main__":
-    main()
+    display_info = pygame.display.Info()
+    pygame.display.set_mode((display_info.current_w, display_info.current_h))
+    screen = pygame.display.set_mode(size)
+
+    start_screen(screen)
+    play(screen)
+    terminate()
+
+
+if __name__ == '__main__':
+    exit_code = main()
+    sys.exit(exit_code)
