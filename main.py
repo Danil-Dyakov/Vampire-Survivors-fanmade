@@ -65,21 +65,21 @@ tile_images = {
 
 player_images = {
     'up': load_image('hero_up.png'),
-    'up2': load_image('hero_up2.jpg'),
+    'up2': load_image('hero_up2.png'),
     'up3': load_image('hero_up.png'),
-    'up4': load_image('hero_up3.jpg'),
+    'up4': load_image('hero_up3.png'),
     'down': load_image('hero_down.png'),
-    'down2': load_image('hero_down2.jpg'),
+    'down2': load_image('hero_down2.png'),
     'down3': load_image('hero_down.png'),
-    'down4': load_image('hero_down3.jpg'),
+    'down4': load_image('hero_down3.png'),
     'left': load_image('hero_left.png'),
-    'left2': load_image('hero_left2.jpg'),
+    'left2': load_image('hero_left2.png'),
     'left3': load_image('hero_left.png'),
-    'left4': load_image('hero_left3.jpg'),
+    'left4': load_image('hero_left3.png'),
     'right': load_image('hero_right.png'),
-    'right2': load_image('hero_right2.jpg'),
+    'right2': load_image('hero_right2.png'),
     'right3': load_image('hero_right.png'),
-    'right4': load_image('hero_right3.jpg')
+    'right4': load_image('hero_right3.png')
 }
 
 tile_width = tile_height = 50
