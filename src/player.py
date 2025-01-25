@@ -1,7 +1,7 @@
 import pygame
-from pygame.sprite import collide_rect, spritecollideany
+from pygame.sprite import spritecollideany
 
-from src.groups import player_group, all_sprites, wall_group
+from src.groups import player_group, all_sprites, wall_group, swamp_group
 from src.tiles import tile_width, tile_height
 from src.utilits.load_image import load_image
 
@@ -59,6 +59,8 @@ class Player(pygame.sprite.Sprite):
                 self.cooldown = 0
             if spritecollideany(self, wall_group) is not None:
                 self.rect.x += self.speed
+            elif spritecollideany(self, swamp_group) is not None:
+                self.rect.x += self.speed / 2
 
         if keys[pygame.K_d]:
             self.rect.x += self.speed
@@ -83,6 +85,8 @@ class Player(pygame.sprite.Sprite):
                 self.cooldown = 0
             if spritecollideany(self, wall_group) is not None:
                 self.rect.x -= self.speed
+            elif spritecollideany(self, swamp_group) is not None:
+                self.rect.x -= self.speed / 2
 
         if keys[pygame.K_w]:
             self.rect.y -= self.speed
@@ -107,6 +111,8 @@ class Player(pygame.sprite.Sprite):
                 self.cooldown = 0
             if spritecollideany(self, wall_group) is not None:
                 self.rect.y += self.speed
+            elif spritecollideany(self, swamp_group) is not None:
+                self.rect.y += self.speed / 2
 
         if keys[pygame.K_s]:
             self.rect.y += self.speed
@@ -131,3 +137,5 @@ class Player(pygame.sprite.Sprite):
                 self.cooldown = 0
             if spritecollideany(self, wall_group) is not None:
                 self.rect.y -= self.speed
+            elif spritecollideany(self, swamp_group) is not None:
+                self.rect.y -= self.speed / 2

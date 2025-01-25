@@ -10,6 +10,8 @@ def generate_level(level):
                 Tile('empty', x, y)
             elif level[y][x] == '#':
                 Tile('wall', x, y)
+            elif level[y][x] == '?':
+                Tile('swamp', x, y)
             elif level[y][x] == '@':
                 Tile('empty', x, y)
                 coords = x, y

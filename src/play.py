@@ -1,5 +1,5 @@
 import pygame
-from pygame import Surface, key
+from pygame import Surface
 
 from src.camera import Camera
 from src.generate_level import generate_level
