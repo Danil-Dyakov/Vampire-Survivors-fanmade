@@ -7,7 +7,6 @@ tile_images = {
     'wall': load_image('tree.png'),
     'empty': load_image('grass.png')
 }
-player_image = load_image('hero_down.png')
 
 tile_width = tile_height = 50
 
@@ -18,5 +17,3 @@ class Tile(pygame.sprite.Sprite):
         self.image = tile_images[tile_type]
         self.rect = self.image.get_rect().move(
             tile_width * pos_x, tile_height * pos_y)
-
-

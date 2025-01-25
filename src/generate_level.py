@@ -12,6 +12,6 @@ def generate_level(level):
                 Tile('wall', x, y)
             elif level[y][x] == '@':
                 Tile('empty', x, y)
-                new_player_coordinates = x, y
-    new_player = Player(*new_player_coordinates)
+                coords = x, y
+    new_player = Player(*coords)
     return new_player, x, y
