@@ -13,6 +13,10 @@ def generate_level(level):
                 Tile('wall', x, y)
                 tile = Tile('wall', x, y)
                 wall_group.add(tile)
+            elif level[y][x] == '!':
+                Tile('chest', x, y)
+                tile = Tile('chest', x, y)
+                wall_group.add(tile)
             elif level[y][x] == '@':
                 Tile('empty', x, y)
                 new_player_coordinates = x, y

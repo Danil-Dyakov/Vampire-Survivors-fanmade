@@ -38,95 +38,55 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_a]:
             self.rect.x -= self.speed
             self.direction = 'left'
-            if self.image == player_images['left'] and self.cooldown == 5:
-                self.image = player_images['left2']
-                self.cooldown = 0
-            elif self.image == player_images['left2'] and self.cooldown == 5:
-                self.image = player_images['left3']
-                self.cooldown = 0
-            elif self.image == player_images['left3'] and self.cooldown == 5:
-                self.image = player_images['left4']
-                self.cooldown = 0
-            elif self.image == player_images['left4'] and self.cooldown == 5:
-                self.image = player_images['left']
-                self.cooldown = 0
-            elif self.cooldown < 5:
-                self.cooldown += 1
-            elif self.image != player_images['left'] and self.image != player_images['left2'] and self.image != \
-                    player_images['left3'] and self.image != player_images['left4']:
-                self.image = player_images['left']
-                self.cooldown = 0
+
+            self.animation(self.direction)
+
             if spritecollideany(self, wall_group) is not None:
                 self.rect.x += self.speed
 
         if keys[pygame.K_d]:
             self.rect.x += self.speed
             self.direction = 'right'
-            if self.image == player_images['right'] and self.cooldown == self.coldown_time:
-                self.image = player_images['right2']
-                self.cooldown = 0
-            elif self.image == player_images['right2'] and self.cooldown == self.coldown_time:
-                self.image = player_images['right3']
-                self.cooldown = 0
-            elif self.image == player_images['right3'] and self.cooldown == self.coldown_time:
-                self.image = player_images['right4']
-                self.cooldown = 0
-            elif self.image == player_images['right4'] and self.cooldown == self.coldown_time:
-                self.image = player_images['right']
-                self.cooldown = 0
-            elif self.cooldown < self.coldown_time:
-                self.cooldown += 1
-            elif self.image != player_images['right'] and self.image != player_images['right2'] and self.image != \
-                    player_images['right3'] and self.image != player_images['right4']:
-                self.image = player_images['right']
-                self.cooldown = 0
+
+            self.animation(self.direction)
+
             if spritecollideany(self, wall_group) is not None:
                 self.rect.x -= self.speed
 
         if keys[pygame.K_w]:
             self.rect.y -= self.speed
             self.direction = 'up'
-            if self.image == player_images['up'] and self.cooldown == self.coldown_time:
-                self.image = player_images['up2']
-                self.cooldown = 0
-            elif self.image == player_images['up2'] and self.cooldown == self.coldown_time:
-                self.image = player_images['up3']
-                self.cooldown = 0
-            elif self.image == player_images['up3'] and self.cooldown == self.coldown_time:
-                self.image = player_images['up4']
-                self.cooldown = 0
-            elif self.image == player_images['up4'] and self.cooldown == self.coldown_time:
-                self.image = player_images['up']
-                self.cooldown = 0
-            elif self.cooldown < self.coldown_time:
-                self.cooldown += 1
-            elif self.image != player_images['up'] and self.image != player_images['up2'] and self.image != \
-                    player_images['up3'] and self.image != player_images['up4']:
-                self.image = player_images['up']
-                self.cooldown = 0
+
+            self.animation(self.direction)
+
             if spritecollideany(self, wall_group) is not None:
                 self.rect.y += self.speed
 
         if keys[pygame.K_s]:
             self.rect.y += self.speed
             self.direction = 'down'
-            if self.image == player_images['down'] and self.cooldown == self.coldown_time:
-                self.image = player_images['down2']
-                self.cooldown = 0
-            elif self.image == player_images['down2'] and self.cooldown == self.coldown_time:
-                self.image = player_images['down3']
-                self.cooldown = 0
-            elif self.image == player_images['down3'] and self.cooldown == self.coldown_time:
-                self.image = player_images['down4']
-                self.cooldown = 0
-            elif self.image == player_images['down4'] and self.cooldown == self.coldown_time:
-                self.image = player_images['down']
-                self.cooldown = 0
-            elif self.cooldown < self.coldown_time:
-                self.cooldown += 1
-            elif self.image != player_images['down'] and self.image != player_images['down2'] and self.image != \
-                    player_images['down3'] and self.image != player_images['down4']:
-                self.image = player_images['down']
-                self.cooldown = 0
+
+            self.animation(self.direction)
+
             if spritecollideany(self, wall_group) is not None:
                 self.rect.y -= self.speed
+
+    def animation(self, side: str):
+        if self.image == player_images[f'{side}'] and self.cooldown == self.coldown_time:
+            self.image = player_images[f'{side}2']
+            self.cooldown = 0
+        elif self.image == player_images[f'{side}2'] and self.cooldown == self.coldown_time:
+            self.image = player_images[f'{side}3']
+            self.cooldown = 0
+        elif self.image == player_images[f'{side}3'] and self.cooldown == self.coldown_time:
+            self.image = player_images[f'{side}4']
+            self.cooldown = 0
+        elif self.image == player_images[f'{side}4'] and self.cooldown == self.coldown_time:
+            self.image = player_images[f'{side}']
+            self.cooldown = 0
+        elif self.cooldown < self.coldown_time:
+            self.cooldown += 1
+        elif self.image != player_images[f'{side}'] and self.image != player_images[f'{side}2'] and self.image != \
+                player_images[f'{side}3'] and self.image != player_images[f'{side}4']:
+            self.image = player_images[f'{side}']
+            self.cooldown = 0
