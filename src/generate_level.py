@@ -1,3 +1,4 @@
+from src.groups import wall_group
 from src.player import Player
 from src.tiles import Tile
 
@@ -10,8 +11,10 @@ def generate_level(level):
                 Tile('empty', x, y)
             elif level[y][x] == '#':
                 Tile('wall', x, y)
+                tile = Tile('wall', x, y)
+                wall_group.add(tile)
             elif level[y][x] == '@':
                 Tile('empty', x, y)
-                coords = x, y
-    new_player = Player(*coords)
+                new_player_coordinates = x, y
+    new_player = Player(*new_player_coordinates)
     return new_player, x, y

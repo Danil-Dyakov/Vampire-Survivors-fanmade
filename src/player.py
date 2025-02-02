@@ -1,6 +1,7 @@
 import pygame
+from pygame.sprite import spritecollideany
 
-from src.groups import player_group, all_sprites
+from src.groups import player_group, all_sprites, wall_group
 from src.tiles import tile_width, tile_height
 from src.utilits.load_image import load_image
 
@@ -55,6 +56,8 @@ class Player(pygame.sprite.Sprite):
                     player_images['left3'] and self.image != player_images['left4']:
                 self.image = player_images['left']
                 self.cooldown = 0
+            if spritecollideany(self, wall_group) is not None:
+                self.rect.x += self.speed
 
         if keys[pygame.K_d]:
             self.rect.x += self.speed
@@ -77,6 +80,9 @@ class Player(pygame.sprite.Sprite):
                     player_images['right3'] and self.image != player_images['right4']:
                 self.image = player_images['right']
                 self.cooldown = 0
+            if spritecollideany(self, wall_group) is not None:
+                self.rect.x -= self.speed
+
         if keys[pygame.K_w]:
             self.rect.y -= self.speed
             self.direction = 'up'
@@ -98,6 +104,9 @@ class Player(pygame.sprite.Sprite):
                     player_images['up3'] and self.image != player_images['up4']:
                 self.image = player_images['up']
                 self.cooldown = 0
+            if spritecollideany(self, wall_group) is not None:
+                self.rect.y += self.speed
+
         if keys[pygame.K_s]:
             self.rect.y += self.speed
             self.direction = 'down'
@@ -119,3 +128,5 @@ class Player(pygame.sprite.Sprite):
                     player_images['down3'] and self.image != player_images['down4']:
                 self.image = player_images['down']
                 self.cooldown = 0
+            if spritecollideany(self, wall_group) is not None:
+                self.rect.y -= self.speed

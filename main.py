@@ -17,7 +17,7 @@ def main() -> None:
     pygame.display.set_mode((display_info.current_w, display_info.current_h))
     screen = pygame.display.set_mode(size)
 
-    start_screen(screen)
+    # start_screen(screen)
     play(screen, FPS)
     terminate()
 
