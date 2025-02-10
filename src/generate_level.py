@@ -1,4 +1,4 @@
-from src.groups import wall_group
+from src.groups import wall_group, chest_group
 from src.player import Player
 from src.tiles import Tile
 
@@ -17,6 +17,7 @@ def generate_level(level):
                 Tile('chest', x, y)
                 tile = Tile('chest', x, y)
                 wall_group.add(tile)
+                chest_group.add(tile)
             elif level[y][x] == '@':
                 Tile('empty', x, y)
                 new_player_coordinates = x, y

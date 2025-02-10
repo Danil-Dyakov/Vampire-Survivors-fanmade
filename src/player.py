@@ -1,7 +1,7 @@
 import pygame
 from pygame.sprite import spritecollideany
 
-from src.groups import player_group, all_sprites, wall_group
+from src.groups import player_group, all_sprites, wall_group, chest_group
 from src.tiles import tile_width, tile_height
 from src.utilits.load_image import load_image
 
@@ -25,7 +25,7 @@ player_images = {
 }
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos_x, pos_y):
+    def __init__(self, pos_x, pos_y) -> None:
         super().__init__(player_group, all_sprites)
         self.image = player_images['down']
         self.rect = self.image.get_rect().move(tile_width * pos_x, tile_height * pos_y)
@@ -33,13 +33,16 @@ class Player(pygame.sprite.Sprite):
         self.cooldown = 0
         self.coldown_time = 3
         self.direction = 'down'
+        self.coin = False
 
-    def move(self, keys):
+    def move(self, keys) -> None:
         if keys[pygame.K_a]:
             self.rect.x -= self.speed
             self.direction = 'left'
 
             self.animation(self.direction)
+
+            self.loot()
 
             if spritecollideany(self, wall_group) is not None:
                 self.rect.x += self.speed
@@ -50,6 +53,8 @@ class Player(pygame.sprite.Sprite):
 
             self.animation(self.direction)
 
+            self.loot()
+
             if spritecollideany(self, wall_group) is not None:
                 self.rect.x -= self.speed
 
@@ -58,6 +63,8 @@ class Player(pygame.sprite.Sprite):
             self.direction = 'up'
 
             self.animation(self.direction)
+
+            self.loot()
 
             if spritecollideany(self, wall_group) is not None:
                 self.rect.y += self.speed
@@ -68,10 +75,12 @@ class Player(pygame.sprite.Sprite):
 
             self.animation(self.direction)
 
+            self.loot()
+
             if spritecollideany(self, wall_group) is not None:
                 self.rect.y -= self.speed
 
-    def animation(self, side: str):
+    def animation(self, side: str) -> None:
         if self.image == player_images[f'{side}'] and self.cooldown == self.coldown_time:
             self.image = player_images[f'{side}2']
             self.cooldown = 0
@@ -90,3 +99,7 @@ class Player(pygame.sprite.Sprite):
                 player_images[f'{side}3'] and self.image != player_images[f'{side}4']:
             self.image = player_images[f'{side}']
             self.cooldown = 0
+
+    def loot(self) -> None:
+        if spritecollideany(self, chest_group) is not None:
+            self.coin = True
