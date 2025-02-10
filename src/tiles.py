@@ -6,7 +6,6 @@ from src.utilits.load_image import load_image
 tile_images = {
     'wall': load_image('tree.png'),
     'empty': load_image('grass.png'),
-    'chest': load_image('chest_closed.png')
 }
 
 tile_width = tile_height = 50

@@ -10,7 +10,7 @@ from src.utilits.load_level import load_level
 
 
 def play(screen: Surface, FPS=60) -> None:
-    player, level_x, level_y = generate_level(load_level('level_1.txt'))
+    player, level_x, level_y, chests = generate_level(load_level('level_1.txt'))
     clock = pygame.time.Clock()
 
     pygame.mixer.music.load("assets/music/The Field of Hopes and Dreams.mp3")
@@ -29,6 +29,9 @@ def play(screen: Surface, FPS=60) -> None:
 
         if player.coin:
             coin_count += 1
+            for element in chests:
+                element.check_opening()
+            player.coin = False
         coin = Coin(screen, str(coin_count))
         coin.move(keys)
         coin.animation()
