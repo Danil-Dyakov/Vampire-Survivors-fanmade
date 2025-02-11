@@ -1,5 +1,4 @@
 from src.chest import Chest
-from src.groups import wall_group
 from src.player import Player
 from src.tiles import Tile
 
@@ -13,8 +12,6 @@ def generate_level(level):
                 Tile('empty', x, y)
             elif level[y][x] == '#':
                 Tile('wall', x, y)
-                tile = Tile('wall', x, y)
-                wall_group.add(tile)
             elif level[y][x] == '!':
                 Chest(x, y)
                 chest = Chest(x, y)

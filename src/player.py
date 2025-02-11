@@ -42,7 +42,7 @@ class Player(pygame.sprite.Sprite):
 
             self.animation(self.direction)
 
-            self.loot()
+            # self.loot(check)
 
             if spritecollideany(self, wall_group) is not None:
                 self.rect.x += self.speed
@@ -53,7 +53,7 @@ class Player(pygame.sprite.Sprite):
 
             self.animation(self.direction)
 
-            self.loot()
+            # self.loot(check)
 
             if spritecollideany(self, wall_group) is not None:
                 self.rect.x -= self.speed
@@ -64,7 +64,7 @@ class Player(pygame.sprite.Sprite):
 
             self.animation(self.direction)
 
-            self.loot()
+            # self.loot(check)
 
             if spritecollideany(self, wall_group) is not None:
                 self.rect.y += self.speed
@@ -75,7 +75,7 @@ class Player(pygame.sprite.Sprite):
 
             self.animation(self.direction)
 
-            self.loot()
+            # self.loot(check)
 
             if spritecollideany(self, wall_group) is not None:
                 self.rect.y -= self.speed
@@ -100,6 +100,7 @@ class Player(pygame.sprite.Sprite):
             self.image = player_images[f'{side}']
             self.cooldown = 0
 
-    def loot(self) -> None:
-        if spritecollideany(self, chest_group) is not None:
+    def loot(self, checking) -> bool:
+        if spritecollideany(self, chest_group) is not None and checking:
             self.coin = True
+            return True

@@ -27,11 +27,14 @@ def play(screen: Surface, FPS=60) -> None:
         keys = pygame.key.get_pressed()
         player.move(keys)
 
-        if player.coin:
-            coin_count += 1
-            for element in chests:
-                element.check_opening()
-            player.coin = False
+        for element in chests:
+            element.check_opening(player)
+            if element.check_opening(player):
+                coin_count += 1
+
+
+
+
         coin = Coin(screen, str(coin_count))
         coin.move(keys)
         coin.animation()
