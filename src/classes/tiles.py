@@ -1,12 +1,11 @@
 import pygame
 
-from src.groups import tiles_group, all_sprites, wall_group
+from src.other.groups import tiles_group, all_sprites, wall_group
 from src.utilits.load_image import load_image
 
 tile_images = {
     'wall': load_image('tree.png'),
     'empty': load_image('grass.png'),
-    'swamp': load_image('swamp.png')
 }
 
 tile_width = tile_height = 50
