@@ -4,7 +4,6 @@ import pygame
 from src.end_screen import end_screen
 from src.play import play
 from src.start_screen import start_screen
-from src.terminate import terminate
 
 
 def main() -> None:
